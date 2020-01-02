@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+
+        <form action="{% url 'mainApp:results' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="yearinput">Year</label>
+            <input type="number" name="year" class="form-control" id="yearinput" aria-describedby="yearinputHelp">
+            <small id="yearinputhelp" class="form-text text-muted">Enter 2 digit year that the batch joined in</small>
+          </div>
+          <div class="form-group">
+            <label for="seminput">Semester</label>
+            <input type="number" name="semester" class="form-control" id="seminput" aria-describedby="semHelp">
+            <small id="semhelp" class="form-text text-muted">Enter the Semester</small>
+          </div>
+          <div class="form-group">
+            <label for="noOfS">Number Of Students</label>
+            <input type="number" name="noOfS" class="form-control" id="noOfS" aria-describedby="noOfSHelp">
+            <small id="noOfSHelp" class="form-text text-muted">Enter the number of students</small>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
