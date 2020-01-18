@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="utf-8">
+{% extends "mainApp/baseWithContainerAndJumbotron.html" %}
+
+  {% block title_block %}
     <title>Welcome</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="jumbotron">
-        <h1>Welcome</h1>
-        <br>
-        <p>{{ requestedresulthere|linebreaks }}</p>
-      </div>
-    </div>
-  </body>
-</html>
+  {% endblock %}
+
+  {% block body_block %}
+    <h1>Welcome</h1>
+    <br>
+    <p>{{ requestedresulthere|linebreaks }}</p>
+  {% endblock %}
