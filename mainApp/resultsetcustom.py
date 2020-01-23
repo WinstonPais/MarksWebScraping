@@ -8,12 +8,13 @@ chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
 chrome_options.add_argument("--headless")#To make The Browser not appear / Headless Chrome
 
 currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
-chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32\chromedriver.exe")#use join function so that it works in any OS
+chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
+chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 
 driver = webdriver.Chrome(executable_path=r""+chromeDriverUrl+"",options=chrome_options)#Regular Expression for the path
 
 
-    
+
 def getrs(year,sem):
     for i in range(1,10):
         url="https://www.vtu4u.com/results/4so"+str(year)+"cs00"+str(i)+"?cbse=1"
@@ -25,7 +26,7 @@ def getrs(year,sem):
             sgpa=allTableRows[1].find_elements_by_tag_name("td")[3].text
             #print(semester)
            # print(sgpa)
-            
+
             if int(semester)==sem and str(sgpa)!="N/A":
                 #print("inside")
                 hrefToMarks=allTableRows[1].find_elements_by_tag_name("td")[6].find_element_by_tag_name("a").get_attribute("href")
@@ -37,6 +38,5 @@ def getrs(year,sem):
                 #print(resultSet)
                 #print(hrefToMarks)
                 return resultSet
-            
-            #print("------------------------------------------------------------------------------")
 
+            #print("------------------------------------------------------------------------------")
