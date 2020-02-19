@@ -1,6 +1,7 @@
 #imports
 from selenium import webdriver
 import os
+import xlwt
 # from mainApp.resultsetcustom import getrs
 from resultsetcustom import getrs
 
@@ -27,6 +28,30 @@ def getsubjectslessthanFive(tabletag,sem):
         subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[1].text)
 
     semInRoman=semdict[sem]
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+    workbook = xlwt.Workbook()
+
+    sheet = workbook.add_sheet("Sheet Name")
+
+# Specifying style
+    style = xlwt.easyxf('font: bold 1')
+
+# Specifying column
+    sheet.write(0, 0, 'Sl. No.', style)
+    sheet.write(0, 1, 'USN', style)
+    sheet.write(0, 2, 'NAME', style)
+    col=3
+    for x in range(0,18,2):
+        sheet.write(0, col, subList[x], style)
+        sheet.write(1, col, subList[x+1], style)
+        col+=1
+
+
+    workbook.save("sample.xls")
+
+
     # print(subList)
 
 def getSemRes(usnYear,semester,numberOfStudents):
