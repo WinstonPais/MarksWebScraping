@@ -31,38 +31,58 @@ def getdetails(tabletag):
     return totalM
     # print(marksList)
 
-def getSubjectsSemOneToFour(tabletag,semester):
+# def set_style(name, height, bold=False):
+#     style = xlwt.XFStyle()  # 初始化样式
+#
+#     font = xlwt.Font()  # 为样式创建字体
+#     font.name = name  # 'Times New Roman'
+#     font.bold = bold
+#     font.color_index = 4
+#     font.height = height
+#
+#     # borders= xlwt.Borders()
+#     # borders.left= 6
+#     # borders.right= 6
+#     # borders.top= 6
+#     # borders.bottom= 6
+#
+#     style.font = font
+#     # style.borders = borders
+#
+#     return style
+
+def getSubjectsYearTwoHeadings(tabletag,semester):
     semdict={1:"I",2:"II",3:"III",4:"IV"}
     allTRsinTable=tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")
     subList=[]
     for trs in range(1,10):
-        subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[0].text)
+        # subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[0].text)
         subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[1].text)
     sheet = workbook.add_sheet(str(semdict[semester])+" Sem")
-    style = xlwt.easyxf('font: bold 1')
-    sheet.write(0, 0, 'Sl. No.', style)
-    sheet.write(0, 1, 'USN', style)
-    sheet.write(0, 2, 'NAME', style)
-    col=3
-    for x in range(0,18,2):
-        sheet.write(0, col, subList[x], style)
-        sheet.write(1, col, subList[x+1], style)
-        col+=1
+    styleTNR12 = xlwt.easyxf("font: name Times New Roman, bold 1,height 240;"
+                             "align:vertical center, horizontal center;")
+    styleC12 = xlwt.easyxf("font: name Calibri, bold 1,height 220;"
+                           "align:vertical center, horizontal center")#height 20 means 1 in excel
+    styleC11Yellow = xlwt.easyxf(#"pattern: pattern solid,back_color red;"
+                            "font: name Calibri, bold 1,height 220;"
+                             "align:vertical center, horizontal center;")
 
 
-
-
-
-
-
-# Specifying style
-
-
-# Specifying column
-
-
-
-    # print(subList)
+    sheet.write_merge(0, 1, 1, 1, 'USN', styleTNR12)   #(top_row, bottom_row, left_column, right_column,content,style)
+    sheet.write_merge(0, 1, 2, 2, 'NAME', styleTNR12)
+    colVal=3
+    for index in range(0,len(subList)):
+        sheet.write_merge(0, 0, colVal, colVal+3, subList[index], styleC12)
+        sheet.write(1, colVal, 'Int', styleC12)
+        sheet.write(1, colVal+1, 'Ext', styleC12)
+        sheet.write(1, colVal+2, 'Total', styleC12)
+        sheet.write(1, colVal+3, 'Result', styleC12)
+        sheet.write_merge(0, 0, colVal+4, colVal+6, "Revaluvation", styleC11Yellow)
+        sheet.write(1, colVal+4, 'Ext',styleC11Yellow)
+        sheet.write(1, colVal+5, 'Total',styleC11Yellow)
+        sheet.write(1, colVal+6, 'Result',styleC11Yellow)
+        colVal+=7
+    workbook.save("sample.xls")
 
 def getSemRes(usnYear,semester,numberOfStudents):
     rs=getrs(usnYear,semester)
@@ -78,8 +98,9 @@ def getSemRes(usnYear,semester,numberOfStudents):
         else:
             url=urlPart1+"cs"+str(num)+urlPart2
         driver.get(url)
-        if num==1 and semester<5:
-            getSubjectsSemOneToFour(driver.find_element_by_class_name("table"),semester)
+        if num==1:
+            if semester==3 or semester==4:
+                getSubjectsYearTwoHeadings(driver.find_element_by_class_name("table"),semester)
         try:
             #to get the name and USN
             usnAndNameDiv=driver.find_element_by_class_name("student_details").find_elements_by_xpath("*")
@@ -89,11 +110,11 @@ def getSemRes(usnYear,semester,numberOfStudents):
             resultString+=studentUSN+"\n"
             #To get All Subject Marks
             resultString+=(driver.find_element_by_class_name("table").text)+"\n"
-            totalM=getdetails(driver.find_element_by_class_name("table"))
+            # totalM=getdetails(driver.find_element_by_class_name("table"))
             '''
                 Entering Details into Excel
             '''
-            slNo=1
+            # slNo=1
 
             # for subb in range()
 
@@ -106,7 +127,7 @@ def getSemRes(usnYear,semester,numberOfStudents):
         resultString+="-------------------------------------------------------------------\n"
 
     driver.close
-    workbook.save("sample.xls")
+
     return resultString
 
 # print(getSemRes(17,4,1))
