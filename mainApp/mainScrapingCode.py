@@ -17,48 +17,36 @@ chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use j
 chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 driver = webdriver.Chrome(chromeDriverUrl,options=chrome_options)
 
-def getdetails(tabletag):
+def getdetailsYearTwo(tabletag,sheet,num):
     # print("reached the function")
     allTRsinTable=tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")
     # print(len(tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")))
+    styleTNR12 = xlwt.easyxf("font: name Times New Roman, height 240;"
+                             "align:vertical center, horizontal center;")
     marksList=[]
+    colVal=3
     for trs in range(1,10):
-        marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[2].text)
-        marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[3].text)
-        marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[4].text)
-        marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[8].text)
-    totalM=allTRsinTable[10].find_elements_by_xpath("*")[1].text
-    return totalM
-    # print(marksList)
+        sheet.write(num+1, colVal, allTRsinTable[trs].find_elements_by_xpath("*")[2].text, styleTNR12)
+        sheet.write(num+1, colVal+1, allTRsinTable[trs].find_elements_by_xpath("*")[3].text, styleTNR12)
+        sheet.write(num+1, colVal+2, allTRsinTable[trs].find_elements_by_xpath("*")[4].text, styleTNR12)
+        sheet.write(num+1, colVal+3, allTRsinTable[trs].find_elements_by_xpath("*")[8].text, styleTNR12)
+        colVal+=7
+        # marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[2].text)
+        # marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[3].text)
+        # marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[4].text)
+        # marksList.append(allTRsinTable[trs].find_elements_by_xpath("*")[8].text)
+    sheet.write(num+1, colVal, allTRsinTable[-1].find_elements_by_xpath("*")[1].text, styleTNR12)
+    # totalM=allTRsinTable[10].find_elements_by_xpath("*")[1].text
 
-# def set_style(name, height, bold=False):
-#     style = xlwt.XFStyle()  # 初始化样式
-#
-#     font = xlwt.Font()  # 为样式创建字体
-#     font.name = name  # 'Times New Roman'
-#     font.bold = bold
-#     font.color_index = 4
-#     font.height = height
-#
-#     # borders= xlwt.Borders()
-#     # borders.left= 6
-#     # borders.right= 6
-#     # borders.top= 6
-#     # borders.bottom= 6
-#
-#     style.font = font
-#     # style.borders = borders
-#
-#     return style
 
-def getSubjectsYearTwoHeadings(tabletag,semester):
-    semdict={1:"I",2:"II",3:"III",4:"IV"}
+def getSubjectsYearTwoHeadings(tabletag,semester,sheet):
+
     allTRsinTable=tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")
     subList=[]
     for trs in range(1,10):
         # subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[0].text)
         subList.append(allTRsinTable[trs].find_elements_by_xpath("*")[1].text)
-    sheet = workbook.add_sheet(str(semdict[semester])+" Sem")
+
     styleTNR12 = xlwt.easyxf("font: name Times New Roman, bold 1,height 240;"
                              "align:vertical center, horizontal center;")
     styleC12 = xlwt.easyxf("font: name Calibri, bold 1,height 220;"
@@ -66,7 +54,6 @@ def getSubjectsYearTwoHeadings(tabletag,semester):
     styleC11Yellow = xlwt.easyxf(#"pattern: pattern solid,back_color red;"
                             "font: name Calibri, bold 1,height 220;"
                              "align:vertical center, horizontal center;")
-
 
     sheet.write_merge(0, 1, 1, 1, 'USN', styleTNR12)   #(top_row, bottom_row, left_column, right_column,content,style)
     sheet.write_merge(0, 1, 2, 2, 'NAME', styleTNR12)
@@ -82,9 +69,13 @@ def getSubjectsYearTwoHeadings(tabletag,semester):
         sheet.write(1, colVal+5, 'Total',styleC11Yellow)
         sheet.write(1, colVal+6, 'Result',styleC11Yellow)
         colVal+=7
-    workbook.save("sample.xls")
+    sheet.write_merge(0, 1, colVal, colVal, "Total", styleC12)
 
 def getSemRes(usnYear,semester,numberOfStudents):
+    styleTNR12 = xlwt.easyxf("font: name Times New Roman, height 240;"
+                             "align:vertical center, horizontal center;")
+    semdict={1:"I",2:"II",3:"III",4:"IV"}
+    sheet = workbook.add_sheet(str(semdict[semester])+" Sem")
     rs=getrs(usnYear,semester)
     #initialize url
     urlPart1="https://www.vtu4u.com/result/4so"+str(usnYear)
@@ -100,7 +91,7 @@ def getSemRes(usnYear,semester,numberOfStudents):
         driver.get(url)
         if num==1:
             if semester==3 or semester==4:
-                getSubjectsYearTwoHeadings(driver.find_element_by_class_name("table"),semester)
+                getSubjectsYearTwoHeadings(driver.find_element_by_class_name("table"),semester,sheet)
         try:
             #to get the name and USN
             usnAndNameDiv=driver.find_element_by_class_name("student_details").find_elements_by_xpath("*")
@@ -108,26 +99,28 @@ def getSemRes(usnYear,semester,numberOfStudents):
             resultString+=studentName+" "
             studentUSN=str(usnAndNameDiv[1].text)[13:] #slicing the string to remove unwanted conent / the 1st index contains the USN
             resultString+=studentUSN+"\n"
+            sheet.write(num+1,1,studentUSN,styleTNR12)
+            sheet.write(num+1,2,studentName,styleTNR12)
             #To get All Subject Marks
             resultString+=(driver.find_element_by_class_name("table").text)+"\n"
             # totalM=getdetails(driver.find_element_by_class_name("table"))
             '''
                 Entering Details into Excel
             '''
-            # slNo=1
+            getdetailsYearTwo(driver.find_element_by_class_name("table"),sheet,num)
 
-            # for subb in range()
 
 
 
         except:
             # print("no data available for "+str(num))
             resultString+="no data available for "+str(num)+"\n"
+            sheet.write(num+1,2,"no data available for "+str(num),styleTNR12)
         #print("-------------------------------------------------------------------")
         resultString+="-------------------------------------------------------------------\n"
 
     driver.close
-
+    workbook.save("sample.xls")
     return resultString
 
 # print(getSemRes(17,4,1))
