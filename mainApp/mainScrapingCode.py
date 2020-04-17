@@ -2,7 +2,7 @@
 from selenium import webdriver
 import os
 import xlwt
-from mainApp.resultsetcustom import getrs
+from mainApp.resultsetcustom import getrs,getrs1
 # from resultsetcustom import getrs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,6 +16,8 @@ currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
 chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
 chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 driver = webdriver.Chrome(chromeDriverUrl,options=chrome_options)
+driver.maximize_window()
+driver.implicitly_wait(20)
 
 def getdetailsYearTwo(tabletag,sheet,num):
     allTRsinTable=tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")
@@ -100,7 +102,7 @@ def yearThree(tabletag,sheet,y3Sub,num,y3total):
             sheet.write(num+1, ind*7+3+3, allTRsinTable[trs].find_elements_by_xpath("*")[8].text, styleTNR12)
     y3total.append(allTRsinTable[-1].find_elements_by_xpath("*")[1].text)
 
-def getSemRes(usnYear,semester,numberOfStudents):
+def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
     styleC12 = xlwt.easyxf("font: name Calibri, bold 1,height 220;"
                            "align:vertical center, horizontal center")
     styleTNR12 = xlwt.easyxf("font: name Times New Roman, height 240;"
@@ -108,7 +110,7 @@ def getSemRes(usnYear,semester,numberOfStudents):
     styleTNR12B = xlwt.easyxf("font: name Times New Roman, bold 1,height 240;"
                              "align:vertical center, horizontal center;")
     semdict={1:"I",2:"II",3:"III",4:"IV",5:"V",6:"VI",7:"VII",8:"VIII"}
-    sheet = workbook.add_sheet(str(semdict[semester])+" Sem")
+    sheet = workbook.add_sheet(str(semdict[semester])+" Sem",cell_overwrite_ok=True)
     rs=getrs(usnYear,semester)
     #initialize url
     urlPart1="https://www.vtu4u.com/result/4so"+str(usnYear)
@@ -156,6 +158,56 @@ def getSemRes(usnYear,semester,numberOfStudents):
             # print("no data available for "+str(num))
             resultString+="no data available for "+str(num)+"\n"
             sheet.write(num+1,2,"no data available for "+str(num),styleTNR12)
+            if semester==5 or semester==6:
+                y3total.append("0")
+        #print("-------------------------------------------------------------------")
+        resultString+="-------------------------------------------------------------------\n"
+
+    workbook.save("4SO"+str(usnYear)+"CS-SEM-"+str(semester)+".xls")
+
+    rs=getrs1(usnYear+1,semester)
+    urlPart1 = "https://www.vtu4u.com/result/4so" + str(usnYear+1)
+    urlPart2 = "/sem-"+str(semester)+"/rs-"+str(rs)+"?cbse=1"
+    if semester==5 or semester==6:
+        sheet.write_merge(0, 1, 1, 1, 'USN', styleTNR12B)   #(top_row, bottom_row, left_column, right_column,content,style)
+        sheet.write_merge(0, 1, 2, 2, 'NAME', styleTNR12B)
+        y3Sub=[]
+        y3total=[]
+
+    num2=numberOfStudents
+    for num in range(0,(numberOfDiplomas)):
+        if num<10:
+            url=urlPart1+"cs40"+str(num)+urlPart2
+        else:
+            url=urlPart1+"cs4"+str(num)+urlPart2
+        driver.get(url)
+        if num==1:
+            if semester==3 or semester==4:
+                getSubjectsYearTwoHeadings(driver.find_element_by_class_name("table"),semester,sheet)
+        try:
+            #to get the name and USN
+            usnAndNameDiv=driver.find_element_by_class_name("student_details").find_elements_by_xpath("*")
+            studentName=str(usnAndNameDiv[0].text)[11:] #slicing the string to remove unwanted conent / the 0th index contains the name
+            resultString+=studentName+" "
+            studentUSN=str(usnAndNameDiv[1].text)[13:] #slicing the string to remove unwanted conent / the 1st index contains the USN
+            resultString+=studentUSN+"\n"
+            sheet.write(num2+num+2,1,studentUSN,styleTNR12)
+            sheet.write(num2+num+2,2,studentName,styleTNR12)
+            #To get All Subject Marks
+            resultString+=(driver.find_element_by_class_name("table").text)+"\n"
+            # totalM=getdetails(driver.find_element_by_class_name("table"))
+
+            if semester==3 or semester==4:
+                getdetailsYearTwo(driver.find_element_by_class_name("table"),sheet,num2+num+1)
+            if semester==5 or semester==6:
+                yearThree(driver.find_element_by_class_name("table"),sheet,y3Sub,num2+num+1,y3total)
+
+
+
+        except:
+            # print("no data available for "+str(num))
+            resultString+="no data available for "+str(num2+num+1)+"\n"
+            sheet.write(num2+num+1,2,"no data available for "+str(num2+num+1),styleTNR12)
             if semester==5 or semester==6:
                 y3total.append("0")
         #print("-------------------------------------------------------------------")
