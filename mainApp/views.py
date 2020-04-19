@@ -11,12 +11,13 @@ def inputpage(req):
 
 def result(req):
     # if this is a POST request we need to process the form data
-    if req.method == 'POST':
+    if req.method=='POST':
         year=req.POST['year']
         sem=req.POST['semester']
         noOfS=req.POST['noOfS']
+        noOfD = req.POST['noOfD']
         #print(str(year)+" "+str(sem)+" "+str(noOfS))
-    resultString=getSemRes(int(year),int(sem),int(noOfS))
+    resultString=getSemRes(int(year),int(sem),int(noOfS),int(noOfD))
     myDict={'requestedresulthere':str(resultString)}
 
     return render(req,'mainApp/result.html',context=myDict)
