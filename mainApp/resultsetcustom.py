@@ -1,7 +1,7 @@
 #imports
 from selenium import webdriver
 import os
-
+from time import sleep
 #Setting up Chrome options
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])#to remove the "Chrome is being controlled by automated test software" notification
@@ -43,6 +43,7 @@ def getrs1(year,sem):
     for i in range(0,10):
         url="https://www.vtu4u.com/results/4so"+str(year)+"cs40"+str(i)+"?cbse=1"
         driver.get(url)
+        sleep(1)
         allTables=driver.find_elements_by_class_name("table") #getting all tables i.e. all sem results including revaluation
         for tabletags in allTables:
             allTableRows=tabletags.find_elements_by_tag_name("tr")
@@ -62,4 +63,3 @@ def getrs1(year,sem):
                 #print(resultSet)
                 #print(hrefToMarks)
                 return resultSet
-

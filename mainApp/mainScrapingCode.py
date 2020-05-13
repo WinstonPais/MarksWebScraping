@@ -3,6 +3,7 @@ from selenium import webdriver
 import os
 import xlwt
 from mainApp.resultsetcustom import getrs,getrs1
+from time import sleep
 # from resultsetcustom import getrs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -175,6 +176,7 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
     resultString = ""
     url1=urlPart1+"cs400"+urlPart2
     driver.get(url1)
+    sleep(1)
     if semester == 3 or semester == 4:
         getSubjectsYearTwoHeadings(driver.find_element_by_class_name("table"), semester, sheet)
     if semester==5 or semester==6:
