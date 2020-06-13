@@ -4,11 +4,11 @@ A web application to automatically generate an Excel Sheet of the student’s se
 ## Installation
 To create a conda environment run the below command
 ```
-conda create --name marksScraper --file conda-requirements.txt
+conda create --name marksScraping --file conda-requirements.txt
 ```
 To activate this environment
 ```
-activate marksScraper
+activate marksScraping
 ```
 **Note**
 if you have installed a new package run this command to call it to the requirements.txt file
