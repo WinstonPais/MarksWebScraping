@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from datetime import datetime
 # from resultsetcustom import getrs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,5 +141,11 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
         sheet.write(m+2, len(y3Sub)*7+3, y3total[m], styleTNR12)
 
     driver.close
-    workbook.save("4SO"+str(usnYear)+"CS-SEM-"+str(semester)+".xls")
-    return resultString
+
+    now = datetime.now()
+    dt_string = now.strftime("%d%m%Y%H%M%S")
+    finalFileName = "4SO"+str(usnYear)+"CS-SEM-"+str(semester)+"-"+str(dt_string)+".xls"
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    EXCEL_DIR=os.path.join(os.path.join(BASE_DIR,"static"),"excelfiles")
+    workbook.save(os.path.join(EXCEL_DIR,finalFileName))
+    return resultString,finalFileName

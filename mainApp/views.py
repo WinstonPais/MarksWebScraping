@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import forms
 from mainApp.mainScrapingCode import getSemRes
+from django.core.files import File
 
 # Create your views here.
 def index(req):
@@ -16,8 +17,7 @@ def result(req):
         sem=req.POST['semester']
         noOfS=req.POST['noOfS']
         noOfD = req.POST['noOfD']
-        #print(str(year)+" "+str(sem)+" "+str(noOfS))
-    resultString=getSemRes(int(year),int(sem),int(noOfS),int(noOfD))
-    myDict={'requestedresulthere':str(resultString)}
 
+    resultString,filename=getSemRes(int(year),int(sem),int(noOfS),int(noOfD))
+    myDict={'requestedresulthere':str(resultString),'file':'excelfiles/'+str(filename)}
     return render(req,'mainApp/result.html',context=myDict)

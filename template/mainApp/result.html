@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 {% extends "mainApp/baseWithContainerAndJumbotron.html" %}
-
+{% load static %}
   {% block title_block %}
     <title>Welcome</title>
   {% endblock %}
 
   {% block body_block %}
     <h1>Welcome</h1>
+    <a href="{% static file %}" download>Download Excel File</a>
     <br>
     <p>{{ requestedresulthere|linebreaks }}</p>
   {% endblock %}
