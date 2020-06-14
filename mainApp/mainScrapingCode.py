@@ -1,4 +1,3 @@
-#imports
 from selenium import webdriver
 import os
 import xlwt
@@ -12,7 +11,12 @@ from datetime import datetime
 # from resultsetcustom import getrs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+xlwt.add_palette_colour("custom_colour", 0x21)
+xlwt.add_palette_colour("custom_colour1", 0x22)
+borders= xlwt.Borders()
 workbook = xlwt.Workbook()
+workbook.set_colour_RGB(0x21, 255, 255, 0) #Excel cell color(yellow)
+workbook.set_colour_RGB(0x22, 245, 245, 245)  #Excel cell color(grey)
 
 #Setting up Chrome options
 chrome_options = webdriver.ChromeOptions()
@@ -27,10 +31,12 @@ def yearThree(tabletag,sheet,y3Sub,num,y3total):
     styleTNR12 = xlwt.easyxf("font: name Times New Roman, bold 1,height 240;"
                              "align:vertical center, horizontal center;")
     styleC12 = xlwt.easyxf("font: name Calibri, bold 1,height 220;"
-                           "align:vertical center, horizontal center")#height 20 means 1 in excel
-    styleC11Yellow = xlwt.easyxf(#"pattern: pattern solid,back_color red;"
-                            "font: name Calibri, bold 1,height 220;"
-                             "align:vertical center, horizontal center;")
+                           "align:vertical center, horizontal center;")#height 20 means 1 in excel
+    styleC11Yellow = xlwt.easyxf(
+        "font: name Calibri, bold 1,height 220;"
+        "align:vertical center, horizontal center;"
+        "pattern: pattern solid, fore_colour custom_colour;"
+        "borders: top_color black, bottom_color black, right_color black, left_color black,left thin, right thin, top thin, bottom thin;")
     allTRsinTable=tabletag.find_element_by_tag_name("tbody").find_elements_by_xpath("*")
     for trs in range(1,len(allTRsinTable)-1):
         cSub=allTRsinTable[trs].find_elements_by_xpath("*")[1].text
@@ -50,7 +56,7 @@ def yearThree(tabletag,sheet,y3Sub,num,y3total):
             sheet.write(1, ind*7+3+1, 'Ext', styleC12)
             sheet.write(1, ind*7+3+2, 'Total', styleC12)
             sheet.write(1, ind*7+3+3, 'Result', styleC12)
-            sheet.write_merge(0, 0, ind*7+3+4, ind*7+3+6, "Revaluvation", styleC11Yellow)
+            sheet.write_merge(0, 0, ind*7+3+4, ind*7+3+6, "Revaluation", styleC11Yellow)
             sheet.write(1, ind*7+3+4, 'Ext',styleC11Yellow)
             sheet.write(1, ind*7+3+5, 'Total',styleC11Yellow)
             sheet.write(1, ind*7+3+6, 'Result',styleC11Yellow)
@@ -68,8 +74,13 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
                              "align:vertical center, horizontal center;")
     styleTNR12B = xlwt.easyxf("font: name Times New Roman, bold 1,height 240;"
                              "align:vertical center, horizontal center;")
+    styleTNR12E = xlwt.easyxf("font: name Times New Roman, height 240, colour red;"
+                             "align:vertical center, horizontal center;"
+                             "pattern: pattern solid, fore_colour custom_colour1;")
     semdict={1:"I",2:"II",3:"III",4:"IV",5:"V",6:"VI",7:"VII",8:"VIII"}
     sheet = workbook.add_sheet(str(semdict[semester])+" Sem",cell_overwrite_ok=True)
+    col_width1 = 256 * 20
+    col_width2 = 256 * 25
     rs=getrs(usnYear,semester)
     urlPart2 = "/sem-"+str(semester)+"/rs-"+str(rs)+"?cbse=1"
     urlPart3 = "https://www.vtu4u.com/result/4so"+str(usnYear)
@@ -88,7 +99,9 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
         try:
             if num ==1:
                     sheet.write_merge(0, 1, 1, 1, 'USN', styleTNR12B)   #(top_row, bottom_row, left_column, right_column,content,style)
+                    sheet.col(1).width=col_width1
                     sheet.write_merge(0, 1, 2, 2, 'NAME', styleTNR12B)
+                    sheet.col(2).width = col_width2
                     y3Sub=[]
                     y3total=[]
             #to get the name and USN
@@ -104,7 +117,7 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
             yearThree(driver.find_element_by_class_name("table"),sheet,y3Sub,num,y3total)
         except:
             resultString+="no data available for "+str(num)+"\n"
-            sheet.write(num+1,2,"no data available for "+str(num),styleTNR12)
+            sheet.write(num+1,2,"No data available for "+str(num),styleTNR12E)
             y3total.append("0")
         resultString+="-------------------------------------------------------------------\n"
 
@@ -132,7 +145,7 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
 
         except:
             resultString+="no data available for "+str(num)+"\n"
-            sheet.write(num+2,2,"no data available for "+str(num),styleTNR12)
+            sheet.write(numberOfStudents+num+2,2,"No data available for "+str(num),styleTNR12E)
             y3total.append("0")
         resultString+="-------------------------------------------------------------------\n"
 
