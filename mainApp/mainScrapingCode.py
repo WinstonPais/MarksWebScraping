@@ -144,8 +144,8 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
 
 
         except:
-            resultString+="no data available for "+str(num)+"\n"
-            sheet.write(numberOfStudents+num+2,2,"No data available for "+str(num),styleTNR12E)
+            resultString+="no data available for "+str(400+num)+"\n"
+            sheet.write(numberOfStudents+num+2,2,"No data available for "+str(400+num),styleTNR12E)
             y3total.append("0")
         resultString+="-------------------------------------------------------------------\n"
 
