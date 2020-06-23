@@ -25,13 +25,17 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static "css/flexslider.css" %}">
 	<link rel="stylesheet" href="{% static "css/style.css" %}">
-
+	<style media="screen">
+		html,body{
+			height: 100%;
+		}
+	</style>
 	</head>
 	<body>
 
 	<div class="ftco-loader"></div>
 
-	<div id="page">
+	<div style="height: 100%;" id="page">
 	<nav class="ftco-nav" role="navigation">
 		<div class="top-menu">
 			<div class="container">
@@ -63,7 +67,7 @@
 		</div>
 	</nav>
 
-	<aside id="ftco-hero" class="js-fullheight">
+	<aside style="height: 100%;" id="ftco-hero" class="js-fullheight">
 		<div class="flexslider js-fullheight">
 			<ul class="slides">
 		   	<li style="background-image: url('../../static/images/sjeccamblur.jpg');">
