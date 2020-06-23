@@ -279,8 +279,7 @@ h1, h2, h3, h4, h5, h6, figure {
       #ftco-hero .flexslider .slides li {
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center center;
-        min-height: 700px;
+        background-position: center;
         position: relative; }
         #ftco-hero .flexslider .slides li:after {
           position: absolute;
