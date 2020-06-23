@@ -11,6 +11,12 @@ def index(req):
 def inputpage(req):
     return render(req,'mainApp/inputPage.html')
 
+def index(req):
+    return render(req,'mainApp/index.html')
+
+def contact(req):
+    return render(req,'mainApp/contact.html')
+
 def result(req):
     if req.method=='POST':
         year=req.POST['year']
