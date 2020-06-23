@@ -2,6 +2,8 @@
 	
 	'use strict';
 
+
+
 	var isMobile = {
 		Android: function() {
 			return navigator.userAgent.match(/Android/i);
@@ -179,13 +181,13 @@
 	var goToTop = function() {
 
 		$('.js-gotop').on('click', function(event){
-			
+
 			event.preventDefault();
 
 			$('html, body').animate({
 				scrollTop: $('html').offset().top
 			}, 500, 'easeInOutExpo');
-			
+
 			return false;
 		});
 
@@ -199,7 +201,7 @@
 			}
 
 		});
-	
+
 	};
 
 
