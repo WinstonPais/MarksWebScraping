@@ -10,6 +10,12 @@ def index(req):
 def inputpage(req):
     return render(req,'mainApp/inputPage.html')
 
+def index(req):
+    return render(req,'mainApp/index.html')
+
+def contact(req):
+    return render(req,'mainApp/contact.html')
+
 def result(req):
     # if this is a POST request we need to process the form data
     if req.method=='POST':

@@ -45,21 +45,10 @@
 					</div>
 					<div class="col-md-9 text-right menu-1">
 						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="practice.html">Practice Areas</a></li>
-							<li><a href="won.html">Won Cases</a></li>
-							<li><a href="gallery.html">Gallery</a></li>
-							<li class="has-dropdown">
-								<a href="blog.html">Blog</a>
-								<ul class="dropdown">
-									<li><a href="#">Sub Menu 1</a></li>
-									<li><a href="#">Sub Menu 2</a></li>
-									<li><a href="#">Sub Menu 3</a></li>
-									<li><a href="#">Sub Menu 4</a></li>
-								</ul>
-							</li>
-							<li><a href="about.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li class="active"><a href="{% url 'mainApp:index' %}">Home</a></li>
+							<li><a href="{% url 'mainApp:inputPage' %}">Prototype</a></li>
+							<li><a href="gallery.html">Developers</a></li>
+							<li><a href="{% url 'mainApp:contact' %}">Contact</a></li>
 						</ul>
 					</div>
 				</div>
