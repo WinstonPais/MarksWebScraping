@@ -11,6 +11,9 @@ def index(req):
 def inputpage(req):
     return render(req,'mainApp/inputPage.html')
 
+def formTemp(req):
+    return render(req,'mainApp/tempInputPage.html')
+
 def index(req):
     return render(req,'mainApp/index.html')
 
