@@ -165,7 +165,7 @@ iframe {
   justify-content: space-between;
   align-items: center;
   margin-top: 125px;
-  
+  padding: 20px 10px 20px 50px;
 }
 
 /*------------------------------------------------------------------
@@ -290,7 +290,7 @@ textarea.input1 + .shadow-input1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 20px;
+  padding: 25px 50px;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
