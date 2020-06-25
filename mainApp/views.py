@@ -30,6 +30,5 @@ def result(req):
     resultString,filename=getSemRes(int(year),int(sem),int(noOfS),int(noOfD))
     usnList,nameList = getNameUsn(resultString)
     studentdataList = getdata(resultString)
-    print(studentdataList)
     myDict={'usnList':usnList,'studentdataList':studentdataList,'nameList':nameList,'file':'excelfiles/'+str(filename)}
     return render(req,'mainApp/Result.html',context=myDict)
