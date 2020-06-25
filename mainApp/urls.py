@@ -7,4 +7,6 @@ urlpatterns=[
     url(r'^inputPage/$',views.inputpage,name='inputPage'),
     url(r'^Results/$',views.result,name='results'),
     url(r'^contact/$',views.contact,name='contact'),
+    url(r'^temp/$',views.formTemp,name='formTemp'),
+    url(r'^developer/$',views.developer,name='developer'),
 ]

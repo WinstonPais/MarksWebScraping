@@ -17,6 +17,9 @@ def index(req):
 def contact(req):
     return render(req,'mainApp/contact.html')
 
+def developer(req):
+    return render(req,'mainApp/developer.html')
+
 def result(req):
     if req.method=='POST':
         year=req.POST['year']
