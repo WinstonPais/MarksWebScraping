@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="{% static "css/style0.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Pangolin&display=swap" rel="stylesheet">
+
 	<style media="screen">
 		html,body{
 			height: 100%;
@@ -46,7 +48,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3">
-						<div id="ftco-logo"> <img src="https://www.sjec.ac.in/images/sjec-full-logo.png" width="61" height="56" alt=""> <span style="color:white;">ASFASF</span> </div>
+						<div id="ftco-logo"> <img src="https://www.sjec.ac.in/images/sjec-full-logo.png" width="61" height="56" alt=""> <span style="color:white;">SJEC</span> </div>
 					</div>
 					<div class="col-md-9 text-right menu-1">
 						<ul>
@@ -61,10 +63,25 @@
 			</div>
 		</div>
 	</nav>
-	<div style="margin-bottom:5em;" class="container">
-		<div class="container-contact100">
-			<div class="wrap-contact100">
-				<form class="contact100-form validate-form">
+	<div style="margin-bottom:5em;margin-top:5em;" class="container">
+		<div class="container">
+			<div style="padding:30px;background-color: rgba(128, 128, 128, .35);backdrop-filter: blur(10px);;" class="wrap-contact100">
+			<div style="padding:30px;"  class="wrap-contact100 contact100-form validate-form">
+				<h2 style="text-align: Center;"><b>Want to contribute to the project?</b></h2>
+				<hr width="500px;" color="red" size="30">
+
+
+				<h3 style="text-align: Center;">Submit your bugs and feature ideas at the link below</h3>
+				<div style="margin-top:1em;">
+					<a href="https://github.com/WinstonPais/MarksWebScraping/issues">
+					<p ><img src="{% static 'images/gitlogo.png'%}" alt="Smiley face" style="float:left;width:140px;height:90px;">
+<strong>Marks WebScraping</strong>	.<br>A web application to automatically generate an Excel Sheet of the student’s semester marks</p>
+</a>
+				</div>
+				</div>
+
+
+				<!-- <form class="contact100-form validate-form">
 					<span class="contact100-form-title">
 						Send Us A Message
 					</span>
@@ -102,7 +119,7 @@
 							Send Message
 						</button>
 					</div>
-				</form>
+				</form> -->
 
 				<div class="contact100-more flex-col-c-m" style="background-image: url('images/bg-01.jpg');">
 					<div class="flex-w size1 p-b-47">
@@ -111,44 +128,41 @@
 						</div>
 
 						<div class="flex-col size2">
-							<span class="txt1 p-b-20">
-								Address
+							<span style="font-family: 'Pangolin', cursive;" class="txt1">
+								Contact Us
 							</span>
-
-							<span class="txt2">
-								Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US
+							<hr color="white">
+							<span class="txt1">
+								<img src="{% static 'images/human.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;	Hazel Shefali John
 							</span>
-						</div>
-					</div>
-
-					<div class="dis-flex size1 p-b-47">
-						<div class="txt1 p-r-25">
-							<span class="lnr lnr-phone-handset"></span>
-						</div>
-
-						<div class="flex-col size2">
-							<span class="txt1 p-b-20">
-								Lets Talk
+							<span class="txt2 p-b-20">
+								<img src="{% static 'images/mailicon.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;&nbsp;	asf@af.com
 							</span>
-
-							<span class="txt3">
-								+1 800 1236879
+							<span class="txt1">
+								<img src="{% static 'images/human.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;	Wilton Santhosh Dsouza
 							</span>
-						</div>
-					</div>
-
-					<div class="dis-flex size1 p-b-47">
-						<div class="txt1 p-r-25">
-							<span class="lnr lnr-envelope"></span>
-						</div>
-
-						<div class="flex-col size2">
-							<span class="txt1 p-b-20">
-								General Support
+							<span class="txt2 p-b-20">
+								<img src="{% static 'images/mailicon.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;&nbsp;	asf@af.com
 							</span>
-
-							<span class="txt3">
-								contact@example.com
+							<span class="txt1">
+								<img src="{% static 'images/human.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;	Vinsten Leon Dsouza
+							</span>
+							<span class="txt2 p-b-20">
+								<img src="{% static 'images/mailicon.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;&nbsp;	asf@af.com
+							</span>
+							<span class="txt1">
+								<img src="{% static 'images/human.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;	Winston Sebastian Pais
+							</span>
+							<span class="txt2 p-b-20">
+								<img src="{% static 'images/mailicon.png' %}" style="width:20px;height:20px;" alt="">
+							&nbsp;&nbsp;	winstonpais@live.in
 							</span>
 						</div>
 					</div>
