@@ -98,7 +98,7 @@
 					<form action="{% url 'mainApp:results' %}" id="inputForm" method="post">
 			      {% csrf_token %}
 						<div class="form-label-group" >
-              <input type="number" name="year" class="form-control" onfocus="myFunction1()" id="yearinput" style="background-color:white;" placeholder="Email address" required autofocus>
+              <input type="number" name="year" min="0" max="99" class="form-control" onfocus="myFunction1()" id="yearinput" style="background-color:white;" placeholder="Email address" required autofocus>
 							<label for="yearinput">Year</label>
 							<small style="color:white !important;margin-left:1em;" id="yearinputhelp" class="form-text text-muted">Enter 2 digit year that the batch joined in</small>
             </div>
@@ -108,12 +108,12 @@
 							<small style="color:white !important;margin-left:1em;" id="semhelp" class="form-text text-muted">Enter the Semester</small>
             </div>
 						<div class="form-label-group">
-              <input type="number" name="noOfS" class="form-control" onfocus="myFunction3()" style="background-color:white;" id="noOfS" placeholder="Email address" required autofocus>
+              <input type="number" min="0" max="999"  name="noOfS" class="form-control" onfocus="myFunction3()" style="background-color:white;" id="noOfS" placeholder="Email address" required autofocus>
 							<label for="noOfS">Number Of Students</label>
 							<small style="color:white !important;margin-left:1em;" id="noOfSHelp" class="form-text text-muted">Enter the number of students</small>
             </div>
 						<div class="form-label-group">
-              <input type="number" name="noOfD" class="form-control" onfocus="myFunction4()" style="background-color:white;" id="noOfD" placeholder="Email address" required autofocus>
+              <input type="number" min="0" max="999" name="noOfD" class="form-control" onfocus="myFunction4()" style="background-color:white;" id="noOfD" placeholder="Email address" required autofocus>
 							<label for="noOfD">Number Of Diploma Students</label>
 							<small style="color:white !important;margin-left:1em;" id="noOfSHelp1" class="form-text text-muted">Enter the number of diploma students</small>
             </div>

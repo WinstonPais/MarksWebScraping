@@ -59,8 +59,10 @@
 	</nav>
 
 	<div class="container">
-		<a href="{% static file %}" download>Download Excel File</a>
+
+		<a href="{% static file %}" download><button type="button" class="btn btn-success">Download Excel File</button></a>
     <br>
+		<br>
 		<div class="table-responsive-md">
 
 			{% for studentNum in usnList|len|range %}
