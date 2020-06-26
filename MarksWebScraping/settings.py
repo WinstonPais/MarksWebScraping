@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')#'nz+_%!gp7==03*n*c#@$nivc#46u=r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['marksscraper.herokuapp.com']
+ALLOWED_HOSTS = ['marksscraper.herokuapp.com','127.0.0.1']
 
 
 # Application definition

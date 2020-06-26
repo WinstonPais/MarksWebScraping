@@ -15,7 +15,7 @@ else:
     chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
 chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 
-driver = webdriver.Chrome(chromeDriverUrl,options=chrome_options)
+driver = webdriver.Chrome(executable_path=str(chromeDriverUrl),options=chrome_options)
 
 
 
