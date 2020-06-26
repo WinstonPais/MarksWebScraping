@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static "css/flexslider.css" %}">
 	<link rel="stylesheet" href="{% static "css/style.css" %}">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@200&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Patua+One&display=swap" rel="stylesheet">
 	<style media="screen">
 		html,body{
 			height: 100%;
@@ -46,11 +48,11 @@
 					</div>
 					<div class="col-md-9 text-right menu-1">
 						<ul>
-							<li><a href="{% url 'index' %}">Home</a></li>
-							<li><a href="https://github.com/WinstonPais/MarksWebScraping" target="_blank">GitHub</a></li>
-							<li><a href="{% url 'mainApp:inputPage' %}">Prototype</a></li>
-							<li><a href="{% url 'mainApp:developer' %}">Developers</a></li>
-							<li><a href="{% url 'mainApp:contact' %}">Contact</a></li>
+							<li><a style="font-family: 'Patua One', cursive; font-size:17px;" href="{% url 'index' %}">Home</a></li>
+							<li><a style="font-family: 'Patua One', cursive; font-size:17px;" href="https://github.com/WinstonPais/MarksWebScraping" target="_blank">GitHub</a></li>
+							<li><a style="font-family: 'Patua One', cursive; font-size:17px;" href="{% url 'mainApp:inputPage' %}">Prototype</a></li>
+							<li><a style="font-family: 'Patua One', cursive; font-size:17px;" href="{% url 'mainApp:developer' %}">Developers</a></li>
+							<li><a style="font-family: 'Patua One', cursive; font-size:17px;" href="{% url 'mainApp:contact' %}">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -68,8 +70,8 @@
 							<div class="col-md-2"></div>
 			   			<div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="">
 			   				<div class="slider-text-inner">
-			   					<h1><strong>Marks Web Scraping</strong></h1>
-									<h2>Click below to begin</h2>
+			   					<h1 style="font-family: 'Anton', sans-serif; font-size:65px;"><strong>Marks Web Scraper</strong></h1>
+									<h2 style="font-family: 'Oswald', sans-serif; font-size:27px;">A web application to automatically generate an Excel Sheet of the student’s semester marks</h2>
 									<p><a class="btn btn-primary btn-lg btn-learn" href="{% url 'mainApp:inputPage' %}">START</a></p>
 			   				</div>
 			   			</div>
