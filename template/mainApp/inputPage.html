@@ -84,7 +84,11 @@
 			</div>
 			<div id="removediv" class="row " style="width:100%;">
 				<div class="col-md-5 align-self-center">
-					<img src= "{% static "images/temp.jpg" %}">
+					<img id="defaultimg" style="height:480;width:930;visibility:visible;" src= "{% static "images/temp.jpg" %}">
+					<img id="img1" style="height:480;width:930;visibility:hidden;" src= "{% static "images/WILTON.jpg" %}">
+					<img id="img2" style="height:480;width:930;visibility:hidden;" src= "{% static "images/hazel.jpg" %}">
+					<img id="img3" style="height:480;width:930;visibility:hidden;" src= "{% static "images/sjeccamblur.jpg" %}">
+					<img id="img4" style="height:480;width:930;visibility:hidden;" src= "{% static "images/sjeccamblurdark.jpg" %}">
 				</div>
 				<div class="col-md-1">
 				</div>
@@ -114,11 +118,9 @@
 							<label for="noOfD">Number Of Diploma Students</label>
 							<small style="color:white !important;margin-left:1em;" id="noOfSHelp1" class="form-text text-muted">Enter the number of diploma students</small>
             </div>
-						<div class="row">
-							<div class="col-md-3"></div>
-							<div class="col-md-6"><button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Submit</button></div>
-							<div class="col-md-3"></div>
-						</div>
+						<button type="submit" class="btn btn-primary text-uppercase font-weight-bold rounded">Submit</button>
+						<!-- <button style="border-radius: 15% !important;width:60%;padding:0;" class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Submit</button> -->
+
 			    </form>
 			 	</div>
 			</div>
