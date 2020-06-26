@@ -26,9 +26,10 @@ chrome_options.add_argument("--headless")#To make The Browser not appear / Headl
 currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
 if platform.system() == 'Linux':
     chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_linux64")
+    chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver")
 else:
     chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
-chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
+    chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 driver = webdriver.Chrome(executable_path=str(chromeDriverUrl),options=chrome_options)
 
 def yearThree(tabletag,sheet,y3Sub,num,y3total):
