@@ -78,7 +78,9 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
                              "align:vertical center, horizontal center;"
                              "pattern: pattern solid, fore_colour custom_colour1;")
     semdict={1:"I",2:"II",3:"III",4:"IV",5:"V",6:"VI",7:"VII",8:"VIII"}
-    sheet = workbook.add_sheet(str(semdict[semester])+" Sem",cell_overwrite_ok=True)
+    now = datetime.now()
+    dt_string = now.strftime("%d%m%Y%H%M%S")
+    sheet = workbook.add_sheet(str(semdict[semester])+"_Sem_"+str(dt_string),cell_overwrite_ok=True)
     col_width1 = 256 * 20
     col_width2 = 256 * 25
     rs=getrs(usnYear,semester)
