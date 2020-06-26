@@ -2,13 +2,17 @@
 from selenium import webdriver
 import os
 from time import sleep
+import platform
 #Setting up Chrome options
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])#to remove the "Chrome is being controlled by automated test software" notification
 chrome_options.add_argument("--headless")#To make The Browser not appear / Headless Chrome
 
 currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
-chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
+if platform.system() == 'Linux':
+    chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_linux64")
+else:
+    chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
 chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 
 driver = webdriver.Chrome(chromeDriverUrl,options=chrome_options)

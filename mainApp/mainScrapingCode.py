@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from datetime import datetime
+import platform
 # from resultsetcustom import getrs
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,10 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])#to remove the "Chrome is being controlled by automated test software" notification
 chrome_options.add_argument("--headless")#To make The Browser not appear / Headless Chrome
 currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
-chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
+if platform.system() == 'Linux':
+    chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_linux64")
+else:
+    chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
 chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
 driver = webdriver.Chrome(chromeDriverUrl,options=chrome_options)
 
