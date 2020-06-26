@@ -1,1 +1,1 @@
-web: gunicorn CSDepartmentLib.wsgi
+web: gunicorn MarksWebScraping.wsgi
