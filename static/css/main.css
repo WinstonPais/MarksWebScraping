@@ -1,42 +1,9 @@
-
-
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-
-
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -177,7 +144,7 @@ iframe {
 [ Contact ]*/
 
 .container-contact100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -189,7 +156,7 @@ iframe {
   align-items: center;
   padding: 15px;
   background: #f2f2f2;
-  
+
 }
 
 .wrap-contact100 {
@@ -285,7 +252,7 @@ iframe {
   line-height: 1.5;
   text-transform: uppercase;
   letter-spacing: 1px;
-  
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -295,7 +262,7 @@ iframe {
   width: 100%;
   min-height: 55px;
   border: 1px solid #e6e6e6;
-  border-bottom: none; 
+  border-bottom: none;
   padding: 10px 25px;
   margin-top: 15px;
   margin-bottom: 0;
@@ -517,6 +484,3 @@ textarea.input100 {
     opacity: 1;
   }
 }
-
-
-
