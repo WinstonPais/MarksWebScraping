@@ -31,4 +31,4 @@ def result(req):
     usnList,nameList = getNameUsn(resultString)
     studentdataList = getdata(resultString)
     myDict={'usnList':usnList,'studentdataList':studentdataList,'nameList':nameList,'file':'excelfiles/'+str(filename)}
-    return render(req,'mainApp/Result.html',context=myDict)
+    return render(req,'mainApp/result.html',context=myDict)
