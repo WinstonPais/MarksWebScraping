@@ -33,6 +33,10 @@ chrome_options.add_argument("--no-sandbox")
 # else:
 #     chromeDriverUrl=os.path.join(currentWorkingDirectory,"chromedriver_win32")#use join function so that it works in any OS
 #     chromeDriverUrl=os.path.join(chromeDriverUrl,"chromedriver.exe")
+# driver = webdriver.Chrome(executable_path=str(chromeDriverUrl),options=chrome_options)
+'''
+To run locally uncomment the above lines and comment the line below
+'''
 driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),options=chrome_options)
 
 def yearThree(tabletag,sheet,y3Sub,num,y3total):
