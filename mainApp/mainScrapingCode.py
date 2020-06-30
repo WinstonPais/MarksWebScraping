@@ -25,8 +25,8 @@ if platform.system() == 'Linux':
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])#to remove the "Chrome is being controlled by automated test software" notification
 chrome_options.add_argument("--headless")#To make The Browser not appear / Headless Chrome
-chrome_options.add_argument("--disable-dev-shm-usage")
-chrome_options.add_argument("--no-sandbox")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--no-sandbox")
 if not platform.system() == 'Linux':
     currentWorkingDirectory=os.path.dirname(os.path.abspath(__file__))
     if platform.system() == 'Linux':
