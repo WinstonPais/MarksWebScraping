@@ -24,10 +24,11 @@ def result(req):
     if req.method=='POST':
         year=req.POST['year']
         sem=req.POST['semester']
+        department=req.POST['department']
         noOfS=req.POST['noOfS']
         noOfD = req.POST['noOfD']
 
-    resultString,filename=getSemRes(int(year),int(sem),int(noOfS),int(noOfD))
+    resultString,filename=getSemRes(int(year),int(sem),int(noOfS),int(noOfD),department)
     usnList,nameList = getNameUsn(resultString)
     studentdataList = getdata(resultString)
     myDict={'usnList':usnList,'studentdataList':studentdataList,'nameList':nameList,'file':'excelfiles/'+str(filename)}

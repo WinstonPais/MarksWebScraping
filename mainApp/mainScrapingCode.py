@@ -79,7 +79,7 @@ def yearThree(tabletag,sheet,y3Sub,num,y3total):
             sheet.write(num+1, ind*7+3+3, allTRsinTable[trs].find_elements_by_xpath("*")[8].text, styleTNR12)
     y3total.append(allTRsinTable[-1].find_elements_by_xpath("*")[1].text)
 
-def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
+def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas,department):
     styleC12 = xlwt.easyxf("font: name Calibri, bold 1,height 220;"
                            "align:vertical center, horizontal center")
     styleTNR12 = xlwt.easyxf("font: name Times New Roman, height 240;"
@@ -102,11 +102,11 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
     resultString = ""
     for num in range(1,(numberOfStudents+1)):
         if num<10:
-            url = urlPart3+"cs00"+str(num)+urlPart2
+            url = urlPart3+str(department)+"00"+str(num)+urlPart2
         elif num<100:
-            url = urlPart3+"cs0"+str(num)+urlPart2
+            url = urlPart3+str(department)+"0"+str(num)+urlPart2
         else:
-            url = urlPart3+"cs"+str(num)+urlPart2
+            url = urlPart3+str(department)+str(num)+urlPart2
         driver.get(url)
         sleep(2)
         print(url)
@@ -137,9 +137,9 @@ def getSemRes(usnYear,semester,numberOfStudents,numberOfDiplomas):
 
     for num in range(0,(numberOfDiplomas)):
         if num<10:
-            url=urlPart1+"cs40"+str(num)+urlPart2
+            url=urlPart1+str(department)+"40"+str(num)+urlPart2
         else:
-            url=urlPart1+"cs4"+str(num)+urlPart2
+            url=urlPart1+str(department)+"4"+str(num)+urlPart2
         driver.get(url)
         sleep(2)
         try:

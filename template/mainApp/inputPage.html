@@ -105,11 +105,29 @@
 							<label for="yearinput">Year</label>
 							<small style="color:white !important;margin-left:1em;" id="yearinputhelp" class="form-text text-muted">Enter 2 digit year that the batch joined in</small>
             </div>
-						<div class="form-label-group">
-              <input type="number" min="1" max="8" name="semester" class="form-control" onfocus="myFunction2()" style="background-color:white;" id="seminput" placeholder="Email address" required autofocus>
-							<label for="seminput">Semester</label>
-							<small style="color:white !important;margin-left:1em;" id="semhelp" class="form-text text-muted">Enter the Semester</small>
-            </div>
+						<div class="row">
+							<div class="col-md-7">
+								<div class="form-label-group">
+		              <input type="number" min="1" max="8" name="semester" class="form-control" onfocus="myFunction2()" style="background-color:white;" id="seminput" placeholder="Email address" required autofocus>
+									<label for="seminput">Semester</label>
+									<small style="color:white !important;margin-left:1em;" id="semhelp" class="form-text text-muted">Enter the Semester</small>
+		            </div>
+							</div>
+							<div class="col-md-5">
+								<div class="form-label-group">
+									<select style="padding-top:15px;padding-bottom:15px;padding-left:40px;padding-right:40px;border-radius:2rem;" name="department" id="department">
+									  <option value="CS">CS</option>
+									  <option value="CV">Civil</option>
+									  <option value="EE">EE</option>
+									  <option value="EC">EC</option>
+										<option value="ME">MECH</option>
+									</select>
+		              <!-- <input type="number" min="1" max="8" name="semester" class="form-control" onfocus="myFunction2()" style="background-color:white;" id="seminput" placeholder="Email address" required autofocus> -->
+									<!-- <label for="department">Semester</label> -->
+									<small style="color:white !important;margin-left:1em;" id="semhelp" class="form-text text-muted">Department</small>
+		            </div>
+							</div>
+						</div>
 						<div class="form-label-group">
               <input type="number" min="0" max="999"  name="noOfS" class="form-control" onfocus="myFunction3()" style="background-color:white;" id="noOfS" placeholder="Email address" required autofocus>
 							<label for="noOfS">Number Of Students</label>
